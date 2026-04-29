@@ -88,21 +88,29 @@
         </section>
       </main>
 
-      <aside class="learn-panel card">
-        <p class="label">Compreender Melhor</p>
-        <button id="btn-podcast">Podcast</button>
-        <button id="btn-video">Video</button>
-        <button id="btn-infograma">Infograma</button>
-        <button id="btn-infograma-2">Infograma 2</button>
-        <button id="btn-questions">Questoes</button>
-        <button id="btn-tutor">Para o Tutor</button>
-      </aside>
+      <div class="sidebar-stack">
+        <aside class="learn-panel card">
+          <p class="label">Compreender Melhor</p>
+          <button id="btn-tutor" type="button">Para o Tutor</button>
+          <button id="btn-podcast" type="button">Podcast</button>
+          <button id="btn-video" type="button">Video</button>
+          <button id="btn-infograma" type="button">Infograma</button>
+          <button id="btn-infograma-2" type="button">Infograma 2</button>
+          <button id="btn-questions" type="button">Questoes</button>
+        </aside>
 
-      <aside class="help-panel card" aria-label="Ajuda com sinais">
-        <p class="label help-panel-title">Ajuda</p>
-        <div class="help-box" role="note">Sinais iguais somam-se</div>
-        <div class="help-box" role="note">Sinais diferentes subtrai-se</div>
-      </aside>
+        <aside class="lembrete-panel card" aria-label="Lembrete sobre sinais">
+          <p class="label lembrete-title">Lembrete</p>
+          <div class="lembrete-btn" role="group" aria-label="Sinais iguais, os numeros somam-se">
+            <span class="lembrete-line1">Sinais iguais</span>
+            <span class="lembrete-line2">Os numeros Somam-se</span>
+          </div>
+          <div class="lembrete-btn" role="group" aria-label="Sinais diferentes, os numeros subtraem-se">
+            <span class="lembrete-line1">Sinais diferentes</span>
+            <span class="lembrete-line2">Numeros subtraem-se</span>
+          </div>
+        </aside>
+      </div>
     </div>
 
     <section id="tutor-modal" class="tutor-modal hidden" aria-modal="true" role="dialog" aria-labelledby="tutor-modal-title">
