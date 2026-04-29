@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAT KID 7 - Equacoes</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="top-bar">
+      <div class="top-main">
+        <h1>MAT KID 7</h1>
+        <h2>Equacoes</h2>
+      </div>
+      <div class="top-side-spacer"></div>
+    </header>
+
+    <div id="main-layout" class="main-layout">
+      <main class="content">
+        <section class="card question-card">
+          <div class="question-header">
+            <p class="label">Pergunta Aleatoria</p>
+            <div class="level-inline">
+              <label class="label" for="level-select">Nivel</label>
+              <select id="level-select">
+                <option value="easy">Facil (1 a 9)</option>
+                <option value="medium">Medio (1 a 20)</option>
+                <option value="hard">Desafio (1 a 99)</option>
+              </select>
+            </div>
+          </div>
+          <div id="equation" class="equation"></div>
+        </section>
+
+        <section class="buttons">
+          <button id="btn-solution">Solucao</button>
+          <button id="btn-demo">Demonstracao</button>
+          <button id="btn-animation">Animacao</button>
+          <button id="btn-training">Treino Guiado</button>
+          <button id="btn-next">Proximo</button>
+          <button id="btn-end" class="danger">Fim</button>
+        </section>
+
+        <section id="solution-area" class="card hidden"></section>
+
+        <section id="demo-area" class="card hidden">
+          <div class="demo-head">
+            <div id="demo-original" class="equation"></div>
+            <p class="demo-warning">Atencao: vermelho significa que o sinal mudou porque passou para o outro lado do =.</p>
+          </div>
+          <div id="demo-steps" class="demo-steps"></div>
+        </section>
+
+        <section id="animation-area" class="card hidden">
+          <div class="animation-head">
+            <p class="label">Animacao com Bonecos de Neve</p>
+            <div class="animation-actions">
+              <label for="animation-speed">Velocidade</label>
+              <select id="animation-speed">
+                <option value="slow">Lento</option>
+                <option value="normal" selected>Normal</option>
+                <option value="fast">Rapido</option>
+              </select>
+              <button id="btn-animation-run">Iniciar Animacao</button>
+              <button id="btn-animation-reset">Reiniciar</button>
+              <button id="btn-animation-expand">Expandir Janela</button>
+            </div>
+          </div>
+          <p id="animation-legend" class="animation-legend">Clica em "Iniciar Animacao" para ver os bonecos atravessar o portao do =.</p>
+          <div id="animation-board" class="animation-board"></div>
+        </section>
+
+        <section id="training-area" class="card hidden">
+          <div class="animation-head">
+            <p class="label">Treino Guiado</p>
+            <button id="btn-training-reset">Reiniciar Treino</button>
+          </div>
+          <p id="training-legend" class="animation-legend">Clica num boneco para o mover para o lado correto.</p>
+          <p id="training-stats" class="training-stats">Acertos: 0 | Tentativas: 0</p>
+          <p id="training-stars" class="training-stars">Estrelas: ☆☆☆</p>
+          <div class="training-history">
+            <p class="label">Historico da Sessao</p>
+            <div id="training-history-list" class="training-history-list"></div>
+          </div>
+          <div id="training-board" class="animation-board training-board"></div>
+        </section>
+      </main>
+
+      <aside class="learn-panel card">
+        <p class="label">Compreender Melhor</p>
+        <button id="btn-podcast">Podcast</button>
+        <button id="btn-video">Video</button>
+        <button id="btn-infograma">Infograma</button>
+        <button id="btn-infograma-2">Infograma 2</button>
+        <button id="btn-questions">Questoes</button>
+        <button id="btn-tutor">Para o Tutor</button>
+      </aside>
+
+      <aside class="tips-panel card">
+        <p class="label">Dicas</p>
+        <div class="tips-box">Sinais iguais somam-se</div>
+        <div class="tips-box">Sinais diferentes subtrai-se</div>
+      </aside>
+    </div>
+
+    <section id="tutor-area" class="card hidden tutor-area">
+      <p class="label">Para o Tutor</p>
+      <p>Este metodo usa a analogia "passar pela porta" para ajudar o aluno a compreender a troca de sinal com confianca.</p>
+      <p>Este nao e o metodo formal mais usado nas escolas (metodo da balanca), mas funciona como apoio intuitivo para chegar a solucao sem decorar regras.</p>
+      <p>As questoes servem para verificar se o aluno percebeu o raciocinio. Nao sao para memorizacao, mas para consolidar seguranca.</p>
+      <p>E recomendavel ouvir o podcast em conjunto com o aluno para reforcar o entendimento.</p>
+    </section>
+
+    <section id="questions-modal" class="questions-modal hidden">
+      <div class="questions-card">
+        <div class="questions-head">
+          <p id="questions-title" class="label">Pergunta 1</p>
+          <p id="questions-counter" class="questions-counter">1 / 1</p>
+          <button id="btn-questions-close" class="danger">Fechar</button>
+        </div>
+        <p id="questions-text" class="questions-text"></p>
+        <p id="questions-answer" class="questions-answer hidden"></p>
+        <div class="questions-actions">
+          <button id="btn-question-prev">←</button>
+          <button id="btn-question-answer">Resposta</button>
+          <button id="btn-question-next">→</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
