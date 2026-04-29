@@ -26,12 +26,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .top-main h1,
 .top-main h2 {
   margin: 0;
   color: #1d4ed8;
+}
+
+.share-btn {
+  background: #0ea5e9;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .main-layout {
