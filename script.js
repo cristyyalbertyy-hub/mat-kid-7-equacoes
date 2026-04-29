@@ -14,14 +14,13 @@ const trainingLegend = document.getElementById("training-legend");
 const trainingStats = document.getElementById("training-stats");
 const trainingStars = document.getElementById("training-stars");
 const trainingHistoryList = document.getElementById("training-history-list");
-const tutorArea = document.getElementById("tutor-area");
+const tutorModal = document.getElementById("tutor-modal");
 const questionsModal = document.getElementById("questions-modal");
 const questionsTitle = document.getElementById("questions-title");
 const questionsCounter = document.getElementById("questions-counter");
 const questionsText = document.getElementById("questions-text");
 const questionsAnswer = document.getElementById("questions-answer");
 const levelSelect = document.getElementById("level-select");
-const btnShare = document.getElementById("btn-share");
 
 const btnSolution = document.getElementById("btn-solution");
 const btnDemo = document.getElementById("btn-demo");
@@ -39,6 +38,7 @@ const btnInfograma = document.getElementById("btn-infograma");
 const btnInfograma2 = document.getElementById("btn-infograma-2");
 const btnQuestions = document.getElementById("btn-questions");
 const btnTutor = document.getElementById("btn-tutor");
+const btnTutorClose = document.getElementById("btn-tutor-close");
 const btnQuestionsClose = document.getElementById("btn-questions-close");
 const btnQuestionPrev = document.getElementById("btn-question-prev");
 const btnQuestionNext = document.getElementById("btn-question-next");
@@ -929,32 +929,11 @@ btnQuestions.addEventListener("click", () => {
 });
 
 btnTutor.addEventListener("click", () => {
-  const nowHidden = tutorArea.classList.toggle("hidden");
-  btnTutor.textContent = nowHidden ? "Para o Tutor" : "Ocultar Tutor";
+  tutorModal.classList.remove("hidden");
 });
 
-btnShare.addEventListener("click", async () => {
-  const shareData = {
-    title: "MAT KID 7 - Equacoes",
-    text: "Vem experimentar esta app de equacoes para criancas.",
-    url: window.location.href
-  };
-
-  if (navigator.share) {
-    try {
-      await navigator.share(shareData);
-      return;
-    } catch (error) {
-      // Se a partilha for cancelada, tenta copiar o link.
-    }
-  }
-
-  try {
-    await navigator.clipboard.writeText(window.location.href);
-    window.alert("Link copiado para a area de transferencia.");
-  } catch (error) {
-    window.prompt("Copia este link:", window.location.href);
-  }
+btnTutorClose.addEventListener("click", () => {
+  tutorModal.classList.add("hidden");
 });
 
 btnQuestionsClose.addEventListener("click", () => {

@@ -13,7 +13,6 @@
       <div class="top-main">
         <h1>MAT KID 7</h1>
         <h2>Equacoes</h2>
-        <button id="btn-share" class="share-btn">🔗 Partilhar App</button>
       </div>
       <div class="top-side-spacer"></div>
     </header>
@@ -106,12 +105,19 @@
       </aside>
     </div>
 
-    <section id="tutor-area" class="card hidden tutor-area">
-      <p class="label">Para o Tutor</p>
-      <p>Este metodo usa a analogia "passar pela porta" para ajudar o aluno a compreender a troca de sinal com confianca.</p>
-      <p>Este nao e o metodo formal mais usado nas escolas (metodo da balanca), mas funciona como apoio intuitivo para chegar a solucao sem decorar regras.</p>
-      <p>As questoes servem para verificar se o aluno percebeu o raciocinio. Nao sao para memorizacao, mas para consolidar seguranca.</p>
-      <p>E recomendavel ouvir o podcast em conjunto com o aluno para reforcar o entendimento.</p>
+    <section id="tutor-modal" class="tutor-modal hidden" aria-modal="true" role="dialog" aria-labelledby="tutor-modal-title">
+      <div class="tutor-card">
+        <div class="tutor-head">
+          <p id="tutor-modal-title" class="label">Para o Tutor</p>
+          <button id="btn-tutor-close" type="button" class="danger">Sair</button>
+        </div>
+        <div class="tutor-body">
+          <p>Este metodo usa a analogia "passar pela porta" para ajudar o aluno a compreender a troca de sinal com confianca.</p>
+          <p>Este nao e o metodo formal mais usado nas escolas (metodo da balanca), mas funciona como apoio intuitivo para chegar a solucao sem decorar regras.</p>
+          <p>As questoes servem para verificar se o aluno percebeu o raciocinio. Nao sao para memorizacao, mas para consolidar seguranca.</p>
+          <p>E recomendavel ouvir o podcast em conjunto com o aluno para reforcar o entendimento.</p>
+        </div>
+      </div>
     </section>
 
     <section id="questions-modal" class="questions-modal hidden">
