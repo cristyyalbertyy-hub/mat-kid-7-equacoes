@@ -36,6 +36,7 @@ const btnPodcast = document.getElementById("btn-podcast");
 const btnVideo = document.getElementById("btn-video");
 const btnInfograma = document.getElementById("btn-infograma");
 const btnInfograma2 = document.getElementById("btn-infograma-2");
+const btnInfograma3 = document.getElementById("btn-infograma-3");
 const btnQuestions = document.getElementById("btn-questions");
 const btnTutor = document.getElementById("btn-tutor");
 const btnTutorClose = document.getElementById("btn-tutor-close");
@@ -909,18 +910,26 @@ btnVideo.addEventListener("click", () => {
 });
 
 btnInfograma.addEventListener("click", () => {
-  const infogramaUrl = "./public/E_I.png";
+  const infogramaUrl = "./public/E_I1.csv";
   const opened = window.open(infogramaUrl, "_blank");
   if (!opened) {
-    window.alert("Nao foi possivel abrir o infograma. Verifica se o ficheiro existe em public/E_I.png.");
+    window.alert("Nao foi possivel abrir o infograma 1. Verifica se o ficheiro existe em public/E_I1.csv.");
   }
 });
 
 btnInfograma2.addEventListener("click", () => {
-  const infogramaUrl = "./public/E_I2.png";
+  const infogramaUrl = "./public/E_I2.csv";
   const opened = window.open(infogramaUrl, "_blank");
   if (!opened) {
-    window.alert("Nao foi possivel abrir o infograma. Verifica se o ficheiro existe em public/E_I2.png.");
+    window.alert("Nao foi possivel abrir o infograma 2. Verifica se o ficheiro existe em public/E_I2.csv.");
+  }
+});
+
+btnInfograma3.addEventListener("click", () => {
+  const infogramaUrl = "./public/E_I3.csv";
+  const opened = window.open(infogramaUrl, "_blank");
+  if (!opened) {
+    window.alert("Nao foi possivel abrir o infograma 3. Verifica se o ficheiro existe em public/E_I3.csv.");
   }
 });
 
