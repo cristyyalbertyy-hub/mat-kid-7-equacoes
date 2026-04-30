@@ -642,6 +642,17 @@ function setLegend(text) {
   animationLegend.textContent = text;
 }
 
+function tryOpenResource(candidates, errorMessage) {
+  for (const url of candidates) {
+    const opened = window.open(url, "_blank");
+    if (opened) {
+      return true;
+    }
+  }
+  window.alert(errorMessage);
+  return false;
+}
+
 function resetAnimationState() {
   animationBoard.querySelectorAll(".footprint").forEach((mark) => mark.remove());
   animationCharacters.forEach((character) => {
@@ -910,27 +921,24 @@ btnVideo.addEventListener("click", () => {
 });
 
 btnInfograma.addEventListener("click", () => {
-  const infogramaUrl = "./public/E_I1.csv";
-  const opened = window.open(infogramaUrl, "_blank");
-  if (!opened) {
-    window.alert("Nao foi possivel abrir o infograma 1. Verifica se o ficheiro existe em public/E_I1.csv.");
-  }
+  tryOpenResource(
+    ["./public/E_I1.csv", "./public/E_I1.png", "./public/E_I1.jpg", "./public/E_I.png"],
+    "Nao foi possivel abrir o infograma 1. Verifica se o ficheiro existe em public (E_I1.csv/png/jpg)."
+  );
 });
 
 btnInfograma2.addEventListener("click", () => {
-  const infogramaUrl = "./public/E_I2.csv";
-  const opened = window.open(infogramaUrl, "_blank");
-  if (!opened) {
-    window.alert("Nao foi possivel abrir o infograma 2. Verifica se o ficheiro existe em public/E_I2.csv.");
-  }
+  tryOpenResource(
+    ["./public/E_I2.csv", "./public/E_I2.png", "./public/E_I2.jpg"],
+    "Nao foi possivel abrir o infograma 2. Verifica se o ficheiro existe em public (E_I2.csv/png/jpg)."
+  );
 });
 
 btnInfograma3.addEventListener("click", () => {
-  const infogramaUrl = "./public/E_I3.csv";
-  const opened = window.open(infogramaUrl, "_blank");
-  if (!opened) {
-    window.alert("Nao foi possivel abrir o infograma 3. Verifica se o ficheiro existe em public/E_I3.csv.");
-  }
+  tryOpenResource(
+    ["./public/E_I3.csv", "./public/E_I3.png", "./public/E_I3.jpg"],
+    "Nao foi possivel abrir o infograma 3. Verifica se o ficheiro existe em public (E_I3.csv/png/jpg)."
+  );
 });
 
 btnQuestions.addEventListener("click", () => {
