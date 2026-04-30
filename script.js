@@ -21,6 +21,12 @@ const questionsCounter = document.getElementById("questions-counter");
 const questionsText = document.getElementById("questions-text");
 const questionsAnswer = document.getElementById("questions-answer");
 const levelSelect = document.getElementById("level-select");
+const infogramModal = document.getElementById("infogram-modal");
+const infogramTitleEl = document.getElementById("infogram-modal-title");
+const infogramLoading = document.getElementById("infogram-loading");
+const infogramError = document.getElementById("infogram-error");
+const infogramImage = document.getElementById("infogram-image");
+const infogramText = document.getElementById("infogram-text");
 
 const btnSolution = document.getElementById("btn-solution");
 const btnDemo = document.getElementById("btn-demo");
@@ -44,6 +50,7 @@ const btnQuestionsClose = document.getElementById("btn-questions-close");
 const btnQuestionPrev = document.getElementById("btn-question-prev");
 const btnQuestionNext = document.getElementById("btn-question-next");
 const btnQuestionAnswer = document.getElementById("btn-question-answer");
+const btnInfogramClose = document.getElementById("btn-infogram-close");
 
 let currentEquation = null;
 let demoStepShown = false;
@@ -66,6 +73,7 @@ let trainingHistory = [];
 let questionsData = [];
 let questionIndex = 0;
 let audioCtx = null;
+let infogramObjectUrl = null;
 
 const animationSpeedMap = {
   slow: { startDelay: 1600, crossDuration: 900 },
@@ -642,15 +650,104 @@ function setLegend(text) {
   animationLegend.textContent = text;
 }
 
-function tryOpenResource(candidates, errorMessage) {
-  for (const url of candidates) {
-    const opened = window.open(url, "_blank");
-    if (opened) {
-      return true;
+function urlsForPublicFile(filename) {
+  // Sem barra inicial: em GitHub Pages com subpasta (ex. /MatKid7/) os caminhos /public/... dão 404.
+  return [`./public/${filename}`, `public/${filename}`, `./${filename}`, filename];
+}
+
+function isProbablyImageBlob(mimeType, fetchUrl) {
+  if (mimeType && mimeType.startsWith("image/")) {
+    return true;
+  }
+  const path = fetchUrl.split("?")[0].toLowerCase();
+  return /\.(png|jpe?g|gif|webp|svg|bmp|ico)$/.test(path);
+}
+
+function revokeInfogramObjectUrl() {
+  if (infogramObjectUrl) {
+    URL.revokeObjectURL(infogramObjectUrl);
+    infogramObjectUrl = null;
+  }
+}
+
+function clearInfogramView() {
+  infogramLoading.classList.add("hidden");
+  infogramError.classList.add("hidden");
+  infogramError.textContent = "";
+  infogramImage.classList.add("hidden");
+  infogramImage.removeAttribute("src");
+  infogramImage.alt = "";
+  infogramText.classList.add("hidden");
+  infogramText.textContent = "";
+  revokeInfogramObjectUrl();
+}
+
+function closeInfogramModal() {
+  infogramModal.classList.add("hidden");
+  clearInfogramView();
+}
+
+async function openInfogramModal(title, filenames) {
+  const seen = new Set();
+  const urlList = [];
+  for (const name of filenames) {
+    for (const url of urlsForPublicFile(name)) {
+      if (!seen.has(url)) {
+        seen.add(url);
+        urlList.push(url);
+      }
     }
   }
-  window.alert(errorMessage);
-  return false;
+
+  infogramTitleEl.textContent = title;
+  clearInfogramView();
+  infogramModal.classList.remove("hidden");
+  infogramLoading.classList.remove("hidden");
+
+  let okResponse = null;
+  let okUrl = "";
+  for (const url of urlList) {
+    try {
+      const res = await fetch(url);
+      if (res.ok) {
+        okResponse = res;
+        okUrl = url;
+        break;
+      }
+    } catch {
+      // Tenta o proximo caminho.
+    }
+  }
+
+  infogramLoading.classList.add("hidden");
+
+  if (!okResponse) {
+    infogramError.textContent =
+      "Nao foi possivel carregar este infograma. Verifica o nome do ficheiro em public/ (ex.: E_I1.png ou E_I1.csv).";
+    infogramError.classList.remove("hidden");
+    return;
+  }
+
+  const blob = await okResponse.blob();
+  const mime = blob.type || "";
+
+  if (isProbablyImageBlob(mime, okUrl)) {
+    revokeInfogramObjectUrl();
+    infogramObjectUrl = URL.createObjectURL(blob);
+    infogramImage.src = infogramObjectUrl;
+    infogramImage.alt = title;
+    infogramImage.classList.remove("hidden");
+    return;
+  }
+
+  try {
+    const text = await blob.text();
+    infogramText.textContent = text;
+    infogramText.classList.remove("hidden");
+  } catch {
+    infogramError.textContent = "Ficheiro recebido mas nao foi possivel mostrar o conteudo.";
+    infogramError.classList.remove("hidden");
+  }
 }
 
 function resetAnimationState() {
@@ -921,24 +1018,25 @@ btnVideo.addEventListener("click", () => {
 });
 
 btnInfograma.addEventListener("click", () => {
-  tryOpenResource(
-    ["./public/E_I1.csv", "./public/E_I1.png", "./public/E_I1.jpg", "./public/E_I.png"],
-    "Nao foi possivel abrir o infograma 1. Verifica se o ficheiro existe em public (E_I1.csv/png/jpg)."
-  );
+  void openInfogramModal("Infogram 1", ["E_I1.csv", "E_I1.png", "E_I1.jpg", "E_I.png"]);
 });
 
 btnInfograma2.addEventListener("click", () => {
-  tryOpenResource(
-    ["./public/E_I2.csv", "./public/E_I2.png", "./public/E_I2.jpg"],
-    "Nao foi possivel abrir o infograma 2. Verifica se o ficheiro existe em public (E_I2.csv/png/jpg)."
-  );
+  void openInfogramModal("Infograma 2", ["E_I2.csv", "E_I2.png", "E_I2.jpg"]);
 });
 
 btnInfograma3.addEventListener("click", () => {
-  tryOpenResource(
-    ["./public/E_I3.csv", "./public/E_I3.png", "./public/E_I3.jpg"],
-    "Nao foi possivel abrir o infograma 3. Verifica se o ficheiro existe em public (E_I3.csv/png/jpg)."
-  );
+  void openInfogramModal("Infograma 3", ["E_I3.csv", "E_I3.png", "E_I3.jpg"]);
+});
+
+btnInfogramClose.addEventListener("click", () => {
+  closeInfogramModal();
+});
+
+infogramModal.addEventListener("click", (event) => {
+  if (event.target === infogramModal) {
+    closeInfogramModal();
+  }
 });
 
 btnQuestions.addEventListener("click", () => {

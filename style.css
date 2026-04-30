@@ -2,6 +2,16 @@
   box-sizing: border-box;
 }
 
+:root {
+  --lego-red: #c81d25;
+  --lego-blue: #0057b8;
+  --lego-yellow: #f7d117;
+  --lego-green: #00852b;
+  --lego-plate: #e8edf2;
+  --lego-stroke: #1e293b;
+  --lego-stud: rgba(255, 255, 255, 0.35);
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -27,12 +37,35 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  background-color: var(--lego-yellow);
+  background-image: radial-gradient(circle at 11px 9px, var(--lego-stud) 3px, transparent 4px),
+    linear-gradient(180deg, #fde047 0%, var(--lego-yellow) 55%, #eab308 100%);
+  background-size: 22px 20px, auto;
+  border: 3px solid #ca8a04;
+  border-radius: 10px;
+  padding: 12px 18px;
+  box-shadow: 0 5px 0 #a16207, inset 0 2px 0 rgba(255, 255, 255, 0.45);
 }
 
 .top-main h1,
 .top-main h2 {
   margin: 0;
-  color: #1d4ed8;
+  color: #0f172a;
+  letter-spacing: 0.02em;
+}
+
+.top-side-spacer {
+  min-height: 48px;
+  border-radius: 10px;
+  background: repeating-linear-gradient(
+      90deg,
+      rgba(15, 23, 42, 0.04) 0,
+      rgba(15, 23, 42, 0.04) 8px,
+      transparent 8px,
+      transparent 16px
+    ),
+    linear-gradient(180deg, #f1f5f9, #e2e8f0);
+  border: 2px solid #cbd5e1;
 }
 
 .main-layout {
@@ -55,6 +88,13 @@ body {
 .content {
   display: grid;
   gap: 16px;
+}
+
+/* Zona de trabalho (main): sem textura nem cores chamativas */
+.content > .card {
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+  border-radius: 14px;
 }
 
 .card {
@@ -304,6 +344,95 @@ button:hover {
   background: #dc2626;
 }
 
+/* Pecas LEGO: so coluna lateral + cartoes da sidebar (a zona .content mantem-se neutra) */
+.sidebar-stack .learn-panel.card {
+  background-color: var(--lego-plate);
+  background-image: radial-gradient(circle at 10px 9px, rgba(255, 255, 255, 0.55) 2px, transparent 3px);
+  background-size: 20px 18px;
+  border: 3px solid #94a3b8;
+  border-radius: 10px;
+  box-shadow: 0 5px 0 #64748b, inset 0 1px 0 #fff;
+  padding: 14px;
+}
+
+.sidebar-stack .learn-panel .label {
+  color: var(--lego-stroke);
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  letter-spacing: 0.07em;
+  margin-bottom: 10px;
+}
+
+.sidebar-stack .learn-panel button {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-weight: 800;
+  font-size: 0.94rem;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.2);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.15s ease;
+  opacity: 1;
+}
+
+.sidebar-stack .learn-panel button:hover {
+  opacity: 1;
+  filter: brightness(1.06);
+}
+
+.sidebar-stack .learn-panel button:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.12);
+}
+
+.sidebar-stack .learn-panel button:nth-child(2) {
+  background: var(--lego-blue);
+}
+
+.sidebar-stack .learn-panel button:nth-child(3) {
+  background: var(--lego-red);
+}
+
+.sidebar-stack .learn-panel button:nth-child(4) {
+  background: var(--lego-green);
+}
+
+.sidebar-stack .learn-panel button:nth-child(5) {
+  background: var(--lego-yellow);
+  color: #0f172a;
+  text-shadow: none;
+  box-shadow: 0 4px 0 #a16207, inset 0 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.sidebar-stack .learn-panel button:nth-child(6) {
+  background: var(--lego-blue);
+}
+
+.sidebar-stack .learn-panel button:nth-child(7) {
+  background: var(--lego-red);
+}
+
+.sidebar-stack .learn-panel button:nth-child(8) {
+  background: var(--lego-green);
+}
+
+.sidebar-stack .lembrete-panel.card {
+  background-color: #f1f5f9;
+  background-image: radial-gradient(circle at 9px 8px, rgba(148, 163, 184, 0.4) 2px, transparent 3px);
+  background-size: 18px 16px;
+  border: 3px solid #cbd5e1;
+  border-radius: 10px;
+  box-shadow: 0 4px 0 #94a3b8;
+}
+
+.sidebar-stack .lembrete-title::after {
+  width: 64px;
+  background: var(--lego-red);
+  background-size: auto;
+  animation: none;
+}
+
 .hidden {
   display: none;
 }
@@ -541,6 +670,80 @@ button:hover {
   display: flex;
   justify-content: space-between;
   gap: 10px;
+}
+
+.infogram-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1002;
+}
+
+.infogram-modal.hidden {
+  display: none;
+}
+
+.infogram-card {
+  width: min(900px, 100%);
+  max-height: min(92vh, 880px);
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.infogram-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.infogram-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  padding: 12px;
+}
+
+.infogram-loading,
+.infogram-error {
+  margin: 0;
+  font-weight: 700;
+  color: #1d4ed8;
+}
+
+.infogram-error {
+  color: #b91c1c;
+}
+
+.infogram-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.infogram-text {
+  margin: 0;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #1e293b;
 }
 
 .training-board .snowman {
