@@ -155,46 +155,55 @@ body {
 
 .lembrete-btn {
   position: relative;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   gap: 6px;
-  padding: 12px 10px;
-  background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 50%, #dbeafe 100%);
-  background-size: 200% 200%;
-  border: 1px solid #93c5fd;
+  padding: 14px 12px;
+  min-height: 76px;
+  /* Fundo sempre visivel (o azul #dbeafe confundia-se com o cartao branco) */
+  background-color: #bfdbfe;
+  background-image: linear-gradient(165deg, #dbeafe 0%, #bfdbfe 45%, #93c5fd 100%);
+  border: 2px solid #60a5fa;
   border-radius: 12px;
   color: #1e3a8a;
   overflow: hidden;
   cursor: default;
-  animation: help-box-glow 3.5s ease-in-out infinite, help-bg-shift 8s ease infinite;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  animation: help-box-glow 3.5s ease-in-out infinite;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .lembrete-line1 {
+  position: relative;
+  z-index: 1;
   font-weight: 800;
   font-size: 1.05rem;
   line-height: 1.25;
 }
 
 .lembrete-line2 {
+  position: relative;
+  z-index: 1;
   font-weight: 700;
   font-size: 0.95rem;
   line-height: 1.3;
-  opacity: 0.95;
+  color: #172554;
 }
 
 .lembrete-btn::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
   background: linear-gradient(
     110deg,
     transparent 0%,
     transparent 40%,
-    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.35) 50%,
     transparent 60%,
     transparent 100%
   );
@@ -204,7 +213,7 @@ body {
 }
 
 .lembrete-btn:nth-child(3) {
-  animation-delay: 0.8s, 2.5s;
+  animation-delay: 0.8s;
 }
 
 .lembrete-btn:nth-child(3)::before {
