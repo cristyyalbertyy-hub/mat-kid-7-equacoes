@@ -1,0 +1,203 @@
+:root {
+  --lego-red: #c81d25;
+  --lego-blue: #0057b8;
+  --lego-yellow: #f7d117;
+  --lego-green: #00852b;
+  --lego-plate: #d8dee9;
+  --lego-plate-dark: #94a3b8;
+  --lego-ink: #0f172a;
+  --lego-muted: #334155;
+  --lego-stud: rgba(255, 255, 255, 0.45);
+  --radius-brick: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body.lego-page {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--lego-ink);
+  line-height: 1.55;
+  min-height: 100vh;
+  background-color: var(--lego-plate);
+  background-image: radial-gradient(circle at 10px 9px, var(--lego-stud) 2px, transparent 3px);
+  background-size: 20px 18px;
+}
+
+.site-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Cabecalho */
+.lego-header {
+  padding: 28px 0 24px;
+}
+
+.lego-headline {
+  margin: 0;
+  padding: 16px 20px;
+  font-size: clamp(1.15rem, 4vw, 1.45rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: var(--lego-ink);
+  background-color: var(--lego-yellow);
+  background-image: radial-gradient(circle at 11px 9px, var(--lego-stud) 3px, transparent 4px),
+    linear-gradient(180deg, #fde047 0%, var(--lego-yellow) 55%, #eab308 100%);
+  background-size: 22px 20px, auto;
+  border: 3px solid #ca8a04;
+  border-radius: var(--radius-brick);
+  box-shadow: 0 6px 0 #a16207, inset 0 2px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* Corpo */
+.lego-main {
+  padding: 8px 0 48px;
+}
+
+.lego-section-head {
+  margin-bottom: 22px;
+}
+
+.lego-section-title {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 8px 14px;
+  font-size: 1.05rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+  background: var(--lego-blue);
+  border: 2px solid #003f87;
+  border-radius: 8px;
+  box-shadow: 0 4px 0 #002654;
+}
+
+.lego-section-sub {
+  margin: 0;
+  font-size: 0.96rem;
+  color: var(--lego-muted);
+  max-width: 58ch;
+}
+
+.app-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+}
+
+.lego-card {
+  background: #fff;
+  border: 3px solid #64748b;
+  border-radius: var(--radius-brick);
+  padding: 20px 20px 18px;
+  box-shadow: 0 6px 0 #475569, inset 0 2px 0 rgba(255, 255, 255, 0.6);
+}
+
+.lego-card--muted {
+  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+  border-style: dashed;
+  box-shadow: 0 4px 0 #94a3b8;
+}
+
+.app-title {
+  margin: 0 0 10px;
+  font-size: 1.12rem;
+  font-weight: 900;
+}
+
+.app-desc {
+  margin: 0 0 16px;
+  color: var(--lego-muted);
+  font-size: 0.95rem;
+}
+
+.app-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-lego {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 18px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-decoration: none;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.28), inset 0 2px 0 rgba(255, 255, 255, 0.2);
+  transition: transform 0.08s ease, filter 0.15s ease, box-shadow 0.08s ease;
+}
+
+.btn-lego:hover {
+  filter: brightness(1.06);
+}
+
+.btn-lego:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.28), inset 0 2px 0 rgba(255, 255, 255, 0.12);
+}
+
+.btn-lego--red {
+  background: var(--lego-red);
+  border-color: #7f1d1d;
+  box-shadow: 0 4px 0 #7f1d1d, inset 0 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-lego--blue {
+  background: var(--lego-blue);
+  border-color: #003f87;
+  color: #fff;
+  box-shadow: 0 4px 0 #002654, inset 0 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.app-note {
+  margin: 14px 0 0;
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+.app-note code {
+  font-size: 0.78rem;
+  word-break: break-all;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #78350f;
+  background: var(--lego-yellow);
+  border-radius: 999px;
+  border: 2px solid #ca8a04;
+  box-shadow: 0 2px 0 #a16207;
+}
+
+.lego-footer {
+  padding: 22px 0 36px;
+  margin-top: 8px;
+  border-top: 4px solid #64748b;
+  background: rgba(255, 255, 255, 0.55);
+  font-size: 0.9rem;
+  color: var(--lego-muted);
+}
+
+.lego-footer p {
+  margin: 0;
+}
